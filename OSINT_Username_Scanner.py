@@ -137,7 +137,25 @@ class FootprintScanner:
                 if api_response.status_code == 200:
                     return (site_name, url, True, category)
                 return (site_name, url, False, category)
-
+            
+            if site_name == "LeetCode":
+                graphql_url = "https://leetcode.com/graphql"
+                payload = {
+                    "query": "query getUserProfile($username: String!) { matchedUser(username: $username) { username } }",
+                    "variables": {"username": username}
+                }
+                lc_headers = headers.copy()
+                lc_headers["Referer"] = f"https://leetcode.com/{username}/"
+                try:
+                    api_response = requests.post(graphql_url, json=payload, headers=lc_headers, timeout=5)
+                    if api_response.status_code == 200:
+                        data = api_response.json()
+                        if data.get("data") and data["data"].get("matchedUser"):
+                            return (site_name, url, True, category)
+                    return (site_name, url, False, category)
+                except requests.RequestException:
+                    return (site_name, url, False, category)
+                
             response = requests.get(url, headers=headers, timeout=8, allow_redirects=True)
             
             if response.status_code == 200:
