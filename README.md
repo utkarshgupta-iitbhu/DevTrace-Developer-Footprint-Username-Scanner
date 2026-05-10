@@ -26,6 +26,14 @@ Built using **Python + CustomTkinter**, this tool helps you quickly map a develo
 
 ---
 
+## 🚀 Installation & Demo
+
+To run the application without setting up a local development environment, you can download the pre-compiled executable:
+
+* **Windows (.exe):** [Download from Google Drive](https://drive.google.com/file/d/1cCGhvuhQT5gq_Nxw11_ISdqIc6Blt_RE/view?usp=drive_link)
+
+---
+
 ## 🌐 Supported Platforms
 
 ### 👨‍💻 Coding
